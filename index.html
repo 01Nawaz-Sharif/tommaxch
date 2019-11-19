@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>error</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <style>
+    header{
+        height: 120px;
+        margin: 0%;
+        padding: 0%;
+    } 
+    </style>
+</head>
+<body>
+        <header class="navbar bg-dark text-light">
+            <h2 id="headerSpan" class="ml-5"> Task List</h2>
+            <form action="" class="form-inline">
+                <input type="search" id="filter" value="search your task..." class="ml-auto form-control">
+            </form>
+        </header>
+        <div class="container">
+            <div class="card-title">
+                <h1 class="h2" id="first-head">MyTask</h1>
+            </div>
+            <div class="card card-body">
+                <h4 class="title">Add Task</h4>
+        
+                <form class="form-inline mb-3" id="form">
+                    <input class="form-control mr-2 w-50" type="text" id="item1">
+                    <input type="submit" class="btn btn-dark">
+                </form>
+        
+                <div class="main" id="container">
+                    <h2 class="title">Task List</h2>
+        
+                    <ul class="list-group" id="list-group">
+                        <li class="list-group-item">item <a href="#" class="float-right delete">&times;</a></li>
+                        <li class="list-group-item">item <a href="#" class="float-right delete">&times;</a></li>
+                        <li class="list-group-item">item <a href="#" class="float-right delete">&times;</a></li>
+                        <li class="list-group-item">item <a href="#" class="float-right delete">&times;</a></li>
+                    </ul>
+        
+                </div>
+                <button class="btn btn-lg btn-dark reset" type="reset" id="reset">Clear items</button>
+            </div>
+
+    
+    <script>
+     
+    var form=document.getElementById('form');
+    var g=document.getElementById("list-group");
+
+    form.addEventListener('submit',runevent);
+
+    function runevent(e){
+
+    //    get value from the input
+        var x= document.getElementById('item1').value;
+        // console.log(x);
+
+        // create a new element li
+        var lis=document.createElement("li");
+
+        // add className to the li
+        lis.className="list-group-item";
+        
+        lis.innerHTML=`${x}<a href="#" class="float-right delete">&times;</a>`;
+
+        // append li to ul
+        g.appendChild(lis);
+        // console.log(g)
+        e.preventDefault();
+    }
+
+    //clear line by line 
+    g.addEventListener('click',removeItem);
+    function removeItem(e){
+        if(e.target.classList.contains('delete')){
+            if(confirm('Do you want to delete this item')){
+                var li = e.target.parentElement;
+                g.removeChild(li);
+            }
+        }
+    }
+    var c=document.getElementById("reset");
+    c.addEventListener('click',removeItems);
+    function removeItems(e){
+        if(e.target.classList.contains('reset')){
+            // var li=e.target.parentElement;
+            if(confirm('Are you sure you want to delte All Items..?')){
+                g.remove(g);
+                // alert('you have click on delete button.');
+            }
+        }
+    };
+
+    //filter section 
+    
+    </script>
+
+</body>
+</html>
